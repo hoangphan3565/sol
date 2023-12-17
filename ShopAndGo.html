@@ -10,11 +10,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #D4A276;
         }
 
         header {
             text-align: center;
-            font-size: 24px;
+            font-size: 32px;
             font-weight: bold;
             padding: 20px;
         }
@@ -36,6 +37,7 @@
             text-align: left;
             border-radius: 10px;
             overflow: hidden; 
+            background-color: white;
         }
 
         .grid-cell h2 {
@@ -134,8 +136,8 @@
 
         /* Video player styles */
         #videoPlayer {
-            width: 100%; 
-            height: auto;
+            width: 100%;
+            height: 70vh; 
             outline: none;
         }
 
@@ -212,6 +214,17 @@
             margin-top: 0px;
 		    margin-bottom: 5px 	
         }
+
+        @media (max-width: 600px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            .popup {
+                width: 90%; 
+                max-width: 400px; 
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -235,7 +248,7 @@
                 <div class="text"></div>
                 <div class="text">150 reviews</div>
                 <div class="total-reviews">44m from CLV</div>
-                <div class="direction-link" onclick="openDirectionPopup('Circle K', './video/SampleVideo2.mp4')">See Direction</div>
+                <div class="direction-link" onclick="openDirectionPopup('Circle K', './video/ShopGo_CircleK.mp4')">See Direction</div>
                 <div class="review-link" onclick="openReviewPopup('Circle K')">Leave your reviews</div>
                 <div class="text"></div>
             </div>
@@ -352,9 +365,7 @@
         <video id="videoPlayer" controls>
             <!-- Video source obtained dynamically -->
         </video>
-        <div class="popup-footer">
-            <button class="popup-close-footer" onclick="closePopup('directionPopup');stopVideo();">Close</button>
-        </div>
+
     </div>
 
     <!-- Popup container for reviews -->
@@ -378,9 +389,7 @@
             </form>
             <ul class="comment-list" id="commentList"></ul>
         </div>
-        <div class="popup-footer">
-            <button class="popup-close-footer" onclick="closePopup('reviewPopup')">Close</button>
-        </div>
+        
     </div>
 
     <script>
@@ -435,6 +444,7 @@
 
             // Example: Load updated comments
             loadComments();
+            closePopup('reviewPopup');
         }
 
         // Function to get the selected rating
