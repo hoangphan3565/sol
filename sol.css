@@ -44,7 +44,7 @@ main {
 
 .grid-layout {
     display: grid;
-    grid-template-columns: repeat(3, 2fr);
+    grid-template-columns: repeat(5, 2fr);
     grid-gap: 10px;
     padding: 10px;
 }
@@ -70,6 +70,11 @@ main {
     text-align: center;
 }
 
+.vertical{
+    text-align: center;
+    color: rgb(212, 212, 212);
+    font-weight: bold;
+}
 
 .review-link {
     color: blue;
