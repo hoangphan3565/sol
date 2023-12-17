@@ -67,15 +67,25 @@ main {
 }
 
 .total-reviews {
-    margin: 5px 0;
+    text-align: center;
 }
 
-.direction-link,
+
 .review-link {
     color: blue;
     text-decoration: underline;
     cursor: pointer;
     margin-left: 18px;
+    text-align: left;
+}
+
+.direction-link{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 18px;
+    text-align: right;
+    padding-right: 20px;
 }
 
 .popup {
@@ -176,7 +186,7 @@ main {
 }
 
 /* Comment list styles */
-.comment-list {
+.comment-list{
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -187,6 +197,7 @@ main {
     padding: 10px 0;
     display: flex;
     flex-direction: column;
+    padding-bottom: 10px;
 }
 
 .comment-list-item:last-child {
@@ -195,7 +206,7 @@ main {
 
 .comment-list-item strong {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .comment-list-item .user-rating {
@@ -203,13 +214,20 @@ main {
     align-items: center;
     color: gold;
     margin-top: -10px;
+    margin-bottom: 5px;
+}
+
+.comment-list-item .star-icon {
+    margin-right: 5px; 
 }
 
 .comment-list-item .date-time {
     color: #555;
     font-size: 12px;
-    margin-top: 0px;
-    margin-bottom: 5px 	
+    margin-top: -20px;
+    text-align: right;
+    flex-shrink: 0; 
+    margin-bottom: 5px;
 }
 
 @media (max-width: 600px) {

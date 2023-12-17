@@ -166,7 +166,32 @@
                 <textarea id="comment" name="comment" placeholder="Write your comment here..."></textarea>
                 <button type="button" onclick="submitComment('Circle K')">Submit</button>
             </form>
-            <ul class="comment-list" id="commentList"></ul>
+            <ul class="comment-list" id="commentList">
+                <li class="comment-list-item">
+                    <strong>CLV Staff 1</strong>
+                    <div class="user-rating">
+                        <span class="star-icon">&#9733;</span>
+                        <span class="star-icon">&#9733;</span>
+                        <span class="star-icon">&#9733;</span>
+                        <span class="star-icon">&#9733;</span>
+                        <span class="star-icon">&#9734;</span>
+                    </div>
+                    <span class="date-time">December 16, 2023</span>
+                    Very Good! Very Good! Very Good! Nice Experience!! Nice Experience!! Nice Experience!! Very Good! Very Good! Very Good! Very Good! Very Good!
+                </li>
+                <li class="comment-list-item">
+                    <strong>CLV Staff 2</strong>
+                    <div class="user-rating">
+                        <span class="star-icon">&#9733;</span>
+                        <span class="star-icon">&#9733;</span>
+                        <span class="star-icon">&#9733;</span>
+                        <span class="star-icon">&#9733;</span>
+                        <span class="star-icon">&#9734;</span>
+                    </div>
+                    <span class="date-time">December 16, 2023</span>
+                    Very Good! Very Good! Very Good! Nice Experience!! Nice Experience!! Nice Experience!! Very Good! Very Good! Very Good! Very Good! Very Good!
+                </li>
+            </ul>
         </div>
         
     </div>
@@ -187,8 +212,6 @@
             document.getElementById('mainContent').classList.add('blurred');
             // You can customize the content of the review popup based on the placeName parameter.
 
-            // Example: Load existing comments
-            loadComments();
         }
 
         function closePopup(popupId) {
@@ -220,9 +243,6 @@
             var rating = getSelectedRating();
             // Add logic to handle the submitted comment (e.g., store in a database)
             console.log("Comment for " + placeName + ": " + comment + ", Rating: " + rating);
-
-            // Example: Load updated comments
-            loadComments();
             closePopup('reviewPopup');
         }
 
@@ -233,28 +253,6 @@
             return 0;
         }
 
-        // Function to load existing comments (example)
-        function loadComments() {
-            var commentList = document.getElementById('commentList');
-            commentList.innerHTML = ''; // Clear existing comments
-
-            // Example: Add dummy comments
-            for (var i = 1; i <= 2; i++) {
-                var listItem = document.createElement('li');
-                listItem.className = 'comment-list-item';
-                listItem.innerHTML = '<strong>CLV Staff ' + i + '</strong>' +
-                                     '<div class="user-rating">' +
-                                     '<span class="star-icon">&#9733;</span>' +
-                                     '<span class="star-icon">&#9733;</span>' +
-                                     '<span class="star-icon">&#9733;</span>' +
-                                     '<span class="star-icon">&#9733;</span>' +
-                                     '<span class="star-icon">&#9734;</span>' +
-                                     '</div>' +
-                                     '<span class="date-time">December 16, 2023</span>' +
-                                     'Very good!';
-                commentList.appendChild(listItem);
-            }
-        }
     </script>
 
 </body>
