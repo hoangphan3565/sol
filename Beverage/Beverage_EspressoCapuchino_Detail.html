@@ -247,7 +247,7 @@
                 <div class="text">150 reviews</div>
                 <div class="total-reviews">44m from CLV</div>
                 <div class="direction-link" onclick="openDirectionPopup('Espressso, Capuchino', '../video/coffee_the_coffee_house.mp4')">See Direction</div>
-                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Leave your reviews</div>
+                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Share your feelings</div>
                 <div class="text"></div>
             </div>
         </div>
@@ -267,7 +267,7 @@
                 <div class="text">400 reviews</div>
                 <div class="total-reviews">77m from CLV</div>
                 <div class="direction-link" onclick="openDirectionPopup('Espressso, Capuchino', '../video/SampleVideo2.mp4')">See Direction</div>
-                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Leave your reviews</div>
+                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Share your feelings</div>
                 <div class="text"></div>
             </div>
         </div>
@@ -287,7 +287,7 @@
                 <div class="text">310 reviews</div>
                 <div class="total-reviews">77m from CLV</div>
                 <div class="direction-link" onclick="openDirectionPopup('Espressso, Capuchino', '../video/SampleVideo2.mp4')">See Direction</div>
-                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Leave your reviews</div>
+                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Share your feelings</div>
                 <div class="text"></div>
             </div>
         </div>
@@ -307,7 +307,7 @@
                 <div class="text">310 reviews</div>
                 <div class="total-reviews">18m from CLV</div>
                 <div class="direction-link" onclick="openDirectionPopup('Espressso, Capuchino', '../video/SampleVideo2.mp4')">See Direction</div>
-                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Leave your reviews</div>
+                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Share your feelings</div>
                 <div class="text"></div>
             </div>
         </div>
@@ -327,7 +327,7 @@
                 <div class="text">433 reviews</div>
                 <div class="total-reviews">94m from CLV</div>
                 <div class="direction-link" onclick="openDirectionPopup('Espressso, Capuchino', '../video/SampleVideo2.mp4')">See Direction</div>
-                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Leave your reviews</div>
+                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Share your feelings</div>
                 <div class="text"></div>
             </div>
         </div>
@@ -347,7 +347,7 @@
                 <div class="text">862 reviews</div>
                 <div class="total-reviews">17m from CLV</div>
                 <div class="direction-link" onclick="openDirectionPopup('Espressso, Capuchino', '../video/SampleVideo2.mp4')">See Direction</div>
-                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Leave your reviews</div>
+                <div class="review-link" onclick="openReviewPopup('Espressso, Capuchino')">Share your feelings</div>
                 <div class="text"></div>
             </div>
         </div>
@@ -374,7 +374,7 @@
         </div>
         <div class="popup-content">
             <form class="comment-form">
-                <label for="comment">Leave your review</label>
+                <label for="comment">Share your feelings</label>
                 <div class="rate-stars">
                     <span class="star-icon" onclick="setRating(1)">&#9733;</span>
                     <span class="star-icon" onclick="setRating(2)">&#9733;</span>
@@ -400,7 +400,7 @@
         }
 
         function openReviewPopup(placeName) {
-            var title = "Reviews of " + placeName;
+            var title = "Share your feelings on " + placeName;
             document.getElementById('reviewTitle').innerText = title;
             document.getElementById('reviewPopup').style.display = 'block';
             document.getElementById('mainContent').classList.add('blurred');
@@ -470,7 +470,7 @@
                                      '<span class="star-icon">&#9734;</span>' +
                                      '</div>' +
                                      '<span class="date-time">December 16, 2023</span>' +
-                                     'This is a sample comment.';
+                                     'Very good!';
                 commentList.appendChild(listItem);
             }
         }
