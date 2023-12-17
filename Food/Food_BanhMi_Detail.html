@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banh Mi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 20px;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+            padding: 20px;
+            transition: filter 0.3s ease-in-out;
+        }
+
+        .blurred {
+            filter: blur(5px);
+        }
+
+        .grid-cell {
+            border: 1px solid #ccc;
+            text-align: left;
+            border-radius: 10px;
+            overflow: hidden; 
+        }
+
+        .grid-cell h2 {
+            margin-bottom: 5px;
+            margin-left: 25px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 2fr);
+            grid-gap: 10px;
+            padding: 10px;
+        }
+
+        .text {
+            text-align: left;
+            margin-left: 17px;
+        }
+
+        .rating {
+            justify-content: center;
+            align-items: center;
+            margin-left: 17px;
+        }
+
+        .star-icon {
+            color: gold;
+            margin-right: 3px;
+            cursor: pointer;
+        }
+
+        .total-reviews {
+            margin: 5px 0;
+        }
+
+        .direction-link,
+        .review-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-left: 18px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            z-index: 1;
+            padding: 20px;
+			width: 700px;
+			border-radius: 8px;
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .popup-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+		
+        .popup-content {
+            padding: 20px 0;
+        }
+
+        .popup-footer {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+		
+        .popup-close {
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; 
+            padding: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Video player styles */
+        #videoPlayer {
+            width: 100%; 
+            height: auto;
+            outline: none;
+        }
+
+        /* Comment form styles */
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .comment-form label {
+            margin-bottom: 5px;
+        }
+
+        .comment-form textarea {
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 10px;
+			margin-top: 5px;
+			border-radius: 5px 
+        }
+
+        .rate-stars {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .rate-stars .star-icon {
+            font-size: 24px;
+        }
+
+        .comment-form button {
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Comment list styles */
+        .comment-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comment-list-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comment-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .comment-list-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .comment-list-item .user-rating {
+            display: flex;
+            align-items: center;
+            color: gold;
+            margin-top: -10px;
+        }
+
+        .comment-list-item .date-time {
+            color: #555;
+            font-size: 12px;
+            margin-top: 0px;
+		    margin-bottom: 5px 	
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Banh Mi
+    </header>
+
+    <main id="mainContent">
+        <div class="grid-cell">
+            <h2>Banh Mi</h2>
+            <div class="grid-layout">
+                <div class="rating">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9734;</span>
+                </div>
+                <div class="text"></div>
+                <div class="text"></div>
+                <div class="text">150 reviews</div>
+                <div class="total-reviews">44m from CLV</div>
+                <div class="direction-link" onclick="openDirectionPopup('Banh Mi', '../video/SampleVideo2.mp4')">See Direction</div>
+                <div class="review-link" onclick="openReviewPopup('Banh Mi')">Leave your reviews</div>
+                <div class="text"></div>
+            </div>
+        </div>
+
+        <div class="grid-cell">
+            <h2>Banh Mi</h2>
+            <div class="grid-layout">
+                <div class="rating">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9734;</span>
+                </div>
+                <div class="text"></div>
+                <div class="text"></div>
+                <div class="text">400 reviews</div>
+                <div class="total-reviews">77m from CLV</div>
+                <div class="direction-link" onclick="openDirectionPopup('Banh Mi', '../video/SampleVideo2.mp4')">See Direction</div>
+                <div class="review-link" onclick="openReviewPopup('Banh Mi')">Leave your reviews</div>
+                <div class="text"></div>
+            </div>
+        </div>
+
+        <div class="grid-cell">
+            <h2>Banh Mi</h2>
+            <div class="grid-layout">
+                <div class="rating">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9734;</span>
+                </div>
+                <div class="text"></div>
+                <div class="text"></div>
+                <div class="text">310 reviews</div>
+                <div class="total-reviews">77m from CLV</div>
+                <div class="direction-link" onclick="openDirectionPopup('Banh Mi', '../video/SampleVideo2.mp4')">See Direction</div>
+                <div class="review-link" onclick="openReviewPopup('Banh Mi')">Leave your reviews</div>
+                <div class="text"></div>
+            </div>
+        </div>
+
+        <div class="grid-cell">
+            <h2>Banh Mi</h2>
+            <div class="grid-layout">
+                <div class="rating">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9734;</span>
+                </div>
+                <div class="text"></div>
+                <div class="text"></div>
+                <div class="text">310 reviews</div>
+                <div class="total-reviews">18m from CLV</div>
+                <div class="direction-link" onclick="openDirectionPopup('Banh Mi', '../video/SampleVideo2.mp4')">See Direction</div>
+                <div class="review-link" onclick="openReviewPopup('Banh Mi')">Leave your reviews</div>
+                <div class="text"></div>
+            </div>
+        </div>
+
+        <div class="grid-cell">
+            <h2>Banh Mi</h2>
+            <div class="grid-layout">
+                <div class="rating">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9734;</span>
+                </div>
+                <div class="text"></div>
+                <div class="text"></div>
+                <div class="text">433 reviews</div>
+                <div class="total-reviews">94m from CLV</div>
+                <div class="direction-link" onclick="openDirectionPopup('Banh Mi', '../video/SampleVideo2.mp4')">See Direction</div>
+                <div class="review-link" onclick="openReviewPopup('Banh Mi')">Leave your reviews</div>
+                <div class="text"></div>
+            </div>
+        </div>
+
+        <div class="grid-cell">
+            <h2>Banh Mi</h2>
+            <div class="grid-layout">
+                <div class="rating">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9734;</span>
+                </div>
+                <div class="text"></div>
+                <div class="text"></div>
+                <div class="text">862 reviews</div>
+                <div class="total-reviews">17m from CLV</div>
+                <div class="direction-link" onclick="openDirectionPopup('Banh Mi', '../video/SampleVideo2.mp4')">See Direction</div>
+                <div class="review-link" onclick="openReviewPopup('Banh Mi')">Leave your reviews</div>
+                <div class="text"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Popup container for directions video player-->
+    <div id="directionPopup" class="popup">
+        <div class="popup-header">
+            <div class="popup-title" id="directionTitle"></div>
+            <button class="popup-close" onclick="closePopup('directionPopup');stopVideo();">✖</button>
+        </div>
+        <video id="videoPlayer" controls>
+            <!-- Video source obtained dynamically -->
+        </video>
+        <div class="popup-footer">
+            <button class="popup-close-footer" onclick="closePopup('directionPopup');stopVideo();">Close</button>
+        </div>
+    </div>
+
+    <!-- Popup container for reviews -->
+    <div id="reviewPopup" class="popup">
+        <div class="popup-header">
+            <div class="popup-title" id="reviewTitle"></div>
+            <button class="popup-close" onclick="closePopup('reviewPopup')">✖</button>
+        </div>
+        <div class="popup-content">
+            <form class="comment-form">
+                <label for="comment">Leave your review</label>
+                <div class="rate-stars">
+                    <span class="star-icon" onclick="setRating(1)">&#9733;</span>
+                    <span class="star-icon" onclick="setRating(2)">&#9733;</span>
+                    <span class="star-icon" onclick="setRating(3)">&#9733;</span>
+                    <span class="star-icon" onclick="setRating(4)">&#9733;</span>
+                    <span class="star-icon" onclick="setRating(5)">&#9734;</span>
+                </div>
+                <textarea id="comment" name="comment" placeholder="Write your comment here..."></textarea>
+                <button type="button" onclick="submitComment('Banh Mi')">Submit</button>
+            </form>
+            <ul class="comment-list" id="commentList"></ul>
+        </div>
+        <div class="popup-footer">
+            <button class="popup-close-footer" onclick="closePopup('reviewPopup')">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openDirectionPopup(placeName, videoUrl) {
+            var title = "Direction for " + placeName;
+            document.getElementById('directionTitle').innerText = title;
+            setVideoSource(placeName, videoUrl);
+            document.getElementById('directionPopup').style.display = 'block';
+            document.getElementById('mainContent').classList.add('blurred');
+        }
+
+        function openReviewPopup(placeName) {
+            var title = "Reviews of " + placeName;
+            document.getElementById('reviewTitle').innerText = title;
+            document.getElementById('reviewPopup').style.display = 'block';
+            document.getElementById('mainContent').classList.add('blurred');
+            // You can customize the content of the review popup based on the placeName parameter.
+
+            // Example: Load existing comments
+            loadComments();
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+            document.getElementById('mainContent').classList.remove('blurred');
+        }
+
+        function stopVideo() {
+            var video = document.getElementById('videoPlayer');
+            video.pause();
+        }
+
+        // Function to set the video source dynamically
+        function setVideoSource(placeName, videoUrl) {
+            var video = document.getElementById('videoPlayer');
+            video.src = videoUrl;
+            // Add more conditions as needed
+        }
+
+        // Function to set the rating
+        function setRating(rating) {
+            // Implement your logic to handle the selected rating
+            console.log('Selected Rating: ' + rating);
+        }
+
+        // Function to submit a comment
+        function submitComment(placeName) {
+            var comment = document.getElementById('comment').value;
+            var rating = getSelectedRating();
+            // Add logic to handle the submitted comment (e.g., store in a database)
+            console.log("Comment for " + placeName + ": " + comment + ", Rating: " + rating);
+
+            // Example: Load updated comments
+            loadComments();
+        }
+
+        // Function to get the selected rating
+        function getSelectedRating() {
+            // Implement your logic to retrieve the selected rating
+            // For now, return a default value (e.g., 0)
+            return 0;
+        }
+
+        // Function to load existing comments (example)
+        function loadComments() {
+            var commentList = document.getElementById('commentList');
+            commentList.innerHTML = ''; // Clear existing comments
+
+            // Example: Add dummy comments
+            for (var i = 1; i <= 2; i++) {
+                var listItem = document.createElement('li');
+                listItem.className = 'comment-list-item';
+                listItem.innerHTML = '<strong>CLV Staff ' + i + '</strong>' +
+                                     '<div class="user-rating">' +
+                                     '<span class="star-icon">&#9733;</span>' +
+                                     '<span class="star-icon">&#9733;</span>' +
+                                     '<span class="star-icon">&#9733;</span>' +
+                                     '<span class="star-icon">&#9733;</span>' +
+                                     '<span class="star-icon">&#9734;</span>' +
+                                     '</div>' +
+                                     '<span class="date-time">December 16, 2023</span>' +
+                                     'This is a sample comment.';
+                commentList.appendChild(listItem);
+            }
+        }
+    </script>
+
+</body>
+</html>
